@@ -8,9 +8,8 @@ Predict whether a person earns **> 50K** or **≤ 50K** using a machine-learning
 
 This project includes a fully functional **Flask web application** with a clean UI for interacting with the prediction model.
 
----
-
 ## 📌 Project Highlights
+---
 - 🚀 Flask Web App with clean UI  
 - 🤖 Machine Learning Model (`model.pkl`)  
 - 🧠 Feature engineering with One-Hot Encoding + Education Mapping  
@@ -18,17 +17,18 @@ This project includes a fully functional **Flask web application** with a clean 
 - ✔ Automatic feature alignment with trained model  
 - 🌍 Ready for deployment (Heroku / Render / PythonAnywhere / AWS)  
 
----
 
 ## 📸 Screenshots
+---
 
 | Home Page | Prediction Result |
 |-----------|-------------------|
 | ![Home](screenshots/home.png) | ![Result](screenshots/result.png) |
 
----
 
 ## 📁 Project Structure
+---
+
 │── app.py 
 │── model.pkl 
 │── templates/
@@ -38,11 +38,9 @@ This project includes a fully functional **Flask web application** with a clean 
 │── README.md
 
 
+### 🔹 Input Features Captured:
 ---
 
-## 🧠 How the Prediction Works
-
-### 🔹 Input Features Captured:
 - Age  
 - Workclass  
 - Education  
@@ -70,8 +68,8 @@ Relationship
 ### 🔹 Automatic Feature Alignment
 Ensures clean matching with the model’s training columns:
 
----
 📦 Model Training Overview
+---
 
 The ML model was trained using:
 
@@ -84,9 +82,9 @@ Numerical encoding for education
 Feature alignment with column consistency
 
 Exported using pickle (model.pkl)
----
 
 🛠 Technologies Used
+---
 
 Python
 
