@@ -9,7 +9,6 @@ Predict whether a person earns **> 50K** or **≤ 50K** using a machine-learning
 This project includes a fully functional **Flask web application** with a clean UI for interacting with the prediction model.
 
 ## 📌 Project Highlights
----
 - 🚀 Flask Web App with clean UI  
 - 🤖 Machine Learning Model (`model.pkl`)  
 - 🧠 Feature engineering with One-Hot Encoding + Education Mapping  
@@ -19,15 +18,13 @@ This project includes a fully functional **Flask web application** with a clean 
 
 
 ## 📸 Screenshots
----
 
 | Home Page | Prediction Result |
 |-----------|-------------------|
-| ![Home](screenshots/home.png) | ![Result](screenshots/result.png) |
+| ![Home](screenshot/home.png) | ![Result](screenshot/result.png) |
 
 
 ## 📁 Project Structure
----
 
 │── app.py 
 │── model.pkl 
@@ -39,7 +36,6 @@ This project includes a fully functional **Flask web application** with a clean 
 
 
 ### 🔹 Input Features Captured:
----
 
 - Age  
 - Workclass  
@@ -97,9 +93,9 @@ Scikit-Learn
 HTML / CSS
 
 ⭐ Contributing
-
+---
 Feel free to fork this repository and submit improvements or suggestions!
 
 👍 Support the Project
-
+---
 If you find this project useful, please star the repository ⭐
