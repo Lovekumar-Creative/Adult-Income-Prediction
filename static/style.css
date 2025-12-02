@@ -1,0 +1,81 @@
+body {
+    font-family: "Poppins", sans-serif;
+    transition: background 0.4s, color 0.4s;
+    background: linear-gradient(135deg, #1f2937, #4b5563);
+    color: #fff;
+    padding: 40px 12px;
+}
+
+body.light {
+    background: linear-gradient(135deg, #e5e7eb, #ffffff);
+    color: #111;
+}
+
+.container-box {
+    max-width: 850px;
+    margin: auto;
+    border-radius: 18px;
+    padding: 35px;
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transition: 0.4s;
+}
+
+body.light .container-box {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.06);
+}
+
+.btn-custom {
+    background: linear-gradient(135deg, #6366f1, #3b82f6);
+    border: none;
+    border-radius: 40px;
+    padding: 12px 40px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: 0.3s;
+    color: #fff;
+}
+
+.btn-custom:hover:not([disabled]) {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(59,130,246,0.8);
+}
+
+.toggle-theme {
+    cursor: pointer;
+    font-weight: 600;
+    float: right;
+    margin: -15px 0 10px 0;
+}
+
+.spinner {
+    display: none;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.result-box {
+    margin-top: 25px;
+    padding: 18px;
+    border-radius: 14px;
+    font-size: 22px;
+    font-weight: 600;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.bg-success-custom {
+    background: linear-gradient(135deg, #0aad3e, #3cff8f);
+    color: #fff;
+}
+
+.bg-info-custom {
+    background: linear-gradient(135deg, #06b6d4, #67e8f9);
+    color: #072f37;
+}

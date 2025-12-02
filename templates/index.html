@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adult Income Prediction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container-box">
+    <span class="toggle-theme" id="toggleTheme">🌙 Dark Mode</span>
+
+    <h2 class="text-center mb-1">💰 Adult Income Prediction</h2>
+    <p class="text-center mb-4">Fill details to estimate whether income is <b>&lt;= 50K</b> or <b>&gt; 50K</b>.</p>
+
+    <form method="POST" action="/" onsubmit="showLoader()">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <label>Country</label>
+                <select name="country" id="country" class="form-select" required>
+                    <option disabled selected>Select Country</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label>WorkClass (Workplace)</label>
+                <select name="workclass" class="form-select" required>
+                    <option disabled selected>Select Workplace</option>
+                    <option value=" Private">Private</option>
+                    <option value=" Self-emp-not-inc">Self-emp-not-inc</option>
+                    <option value=" Self-emp-inc">Self-emp-inc</option>
+                    <option value=" Federal-gov">Federal-gov</option>
+                    <option value=" Local-gov">Local-gov</option>
+                    <option value=" State-gov">State-gov</option>
+                    <option value=" Without-pay">Without-pay</option>
+                    <option value=" Never-worked">Never-worked</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label>Occupation</label>
+                <select name="occupation" class="form-select" required>
+                    <option disabled selected>Select Occupation</option>
+                    <option value=" Tech-support">Tech-support</option>
+                    <option value=" Craft-repair">Craft-repair</option>
+                    <option value=" Other-service">Other-service</option>
+                    <option value=" Sales">Sales</option>
+                    <option value=" Exec-managerial">Exec-managerial</option>
+                    <option value=" Prof-specialty">Prof-specialty</option>
+                    <option value=" Handlers-cleaners">Handlers-cleaners</option>
+                    <option value=" Machine-op-inspct">Machine-op-inspct</option>
+                    <option value=" Adm-clerical">Adm-clerical</option>
+                    <option value=" Farming-fishing">Farming-fishing</option>
+                    <option value=" Transport-moving">Transport-moving</option>
+                    <option value=" Priv-house-serv">Priv-house-serv</option>
+                    <option value=" Protective-serv">Protective-serv</option>
+                    <option value=" Armed-Forces">Armed-Forces</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label>Age</label>
+                <input type="number" class="form-control" name="Age" min="17" max="90" required>
+            </div>
+            <div class="col-md-4">
+                <label>Working Hours / Week</label>
+                <input type="number" class="form-control" name="hours_per_week" min="1" max="100" required>
+            </div>
+            <div class="col-md-4">
+                <label>Gender</label>
+                <select name="Sex" class="form-select" required>
+                    <option disabled selected> Select gender</option>
+                    <option value=" Male">male</option>
+                    <option value=" Female">female</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label>Capital Gain</label>
+                <input type="number" step="0.01" class="form-control" name="Capital_gain" value="0">
+            </div>
+            <div class="col-md-6">
+                <label>Capital Loss</label>
+                <input type="number" step="0.01" class="form-control" name="Capital_loss" value="0">
+            </div>
+            <div class="col-md-4">
+                <label>Education</label>
+                <select name="Education" class="form-select" required>
+                    <option disabled selected>Select Education</option>
+                    <option value=" Doctorate">Doctorate</option>
+                    <option value=" Prof-school">Prof-school</option>
+                    <option value=" Masters">Masters</option>
+                    <option value=" Bachelors">Bachelors</option>
+                    <option value=" Some-college">Some-college</option>
+                    <option value=" Assoc-acdm">Assoc-acdm</option>
+                    <option value=" Assoc-voc">Assoc-voc</option>
+                    <option value=" HS-grad">HS-grad</option>
+                    <option value=" 12th">12th</option>
+                    <option value=" 11th">11th</option>
+                    <option value=" 10th">10th</option>
+                    <option value=" 9th">9th</option>
+                    <option value=" 7th-8th">7th-8th</option>
+                    <option value=" 5th-6th">5th-6th</option>
+                    <option value=" 1st-4th">1st-4th</option>
+                    <option value=" Preschool">Preschool</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label>Marital Status</label>
+                <select name="Marital_status" class="form-select" required>
+                    <option disabled selected>Select Marital Status</option>
+                    <option value=" married">Married</option>
+                    <option value=" Not-married">Not-married</option>
+                    <option value=" previously-married">previously-married</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label>Relationship</label>
+                <select name="Relationship" class="form-select" required>
+                    <option value="" disabled selected>Select Relationship</option>
+                    <option value=" Single">Single</option>
+                    <option value=" Spouse">Spouse</option>
+                    <option value=" Others">Others</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <button id="predictBtn" type="submit" class="btn-custom">Predict Income</button>
+        </div>
+    </form>
+
+    <!-- Spinner -->
+    <div id="spinner" class="spinner">
+        <div class="spinner-border text-light"></div>
+        <p class="mt-2">Predicting, please wait...</p>
+    </div>
+
+    {% if prediction %}
+    <div class="result-box text-center mt-4 
+        {% if prediction == '> 50K' %}bg-success-custom
+        {% else %}bg-info-custom{% endif %}">
+        Predicted Income: {{ prediction }}
+    </div>
+    {% endif %}
+</div>
+
+<script>
+    // Dark / Light Mode Toggle
+    const toggleBtn = document.getElementById("toggleTheme");
+    toggleBtn.onclick = () => {
+        document.body.classList.toggle("light");
+        toggleBtn.innerText = document.body.classList.contains("light")
+            ? "🌚 Light Mode"
+            : "🌙 Dark Mode";
+    };
+
+    // Loader + Disable Button
+    function showLoader() {
+        document.getElementById("spinner").style.display = "block";
+        document.getElementById("predictBtn").disabled = true;
+    }
+    const countries = [' United-States', ' Cuba', ' Jamaica', ' India', ' Mexico',
+       ' South', ' Puerto-Rico', ' Honduras', ' England', ' Canada',
+       ' Germany', ' Iran', ' Philippines', ' Italy', ' Poland',
+       ' Columbia', ' Cambodia', ' Thailand', ' Ecuador', ' Laos',
+       ' Taiwan', ' Haiti', ' Portugal', ' Dominican-Republic',
+       ' El-Salvador', ' France', ' Guatemala', ' China', ' Japan',
+       ' Yugoslavia', ' Peru', ' Outlying-US(Guam-USVI-etc)', ' Scotland',
+       ' Trinadad&Tobago', ' Greece', ' Nicaragua', ' Vietnam', ' Hong',
+       ' Ireland', ' Hungary', ' Holand-Netherlands'];
+
+    const countrySelect = document.getElementById("country");
+
+    countries.forEach(country => {
+        let option = document.createElement("option");
+        option.value = country;
+        option.textContent = country;
+        countrySelect.appendChild(option);
+    });
+</script>
+
+</body>
+</html>
